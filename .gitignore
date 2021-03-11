@@ -4,3 +4,4 @@ package-lock.json
 /.cache
 /build
 /public/build
+.DS_Store
