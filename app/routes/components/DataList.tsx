@@ -18,7 +18,6 @@ export default function DataList() {
   const [{ list }, setData, getData] = useComponentData('DataList')
   const [page, setPage] = useState(0)
 
-  console.log('DataList list', list)
   const handleRefresh = async () => {
     const newPage = page + 1
     setPage(newPage)
