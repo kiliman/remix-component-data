@@ -83,7 +83,7 @@ Widget1.CatchBoundary = function () {
   const caught = useComponentCatch()
   ...
 }
-Windget1.ErrorBoundary = function({error}) {
+Widget1.ErrorBoundary = function({error}) {
   return <div>{error.message}</div>
 }
 ```
