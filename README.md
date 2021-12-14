@@ -107,26 +107,29 @@ export let action: ActionFunction = async args => {
 }
 
 // wrap component in <ComponentData> and pass in props: id and actionData
-export default function() {
+export default function () {
   const { routeData, componentData } = useComponentData()
   const actionData = useActionData()
   return (
     <>
       {routeData.postIds
-      .map(postId => `post?postId=${postId}`)
-      .map(postId => (
-        <ComponentData
-          id={postId} // id must be unique: `post?postId=1`, etc
-          key={postId}
-          loaderData={componentData[postId]}
-          actionData={actionData?.[postId]}
-        >
-          <Widget />
-        </ComponentData>
+        .map(postId => `post?postId=${postId}`)
+        .map(postId => (
+          <ComponentData
+            id={postId}
+            key={postId}
+            loaderData={componentData[postId]}
+            actionData={actionData?.[postId]}
+          >
+            <Widget4 />
+          </ComponentData>
+        ))}
     </>
   )
 }
+```
 
+```ts
 // widget.tsx
 // componentParams added to match data from <ComponentData id={key}>
 export let action: ActionFunction = async ({ request, componentParams }) => {
@@ -167,7 +170,6 @@ function Widget4() {
     </div>
   )
 }
-
 ```
 
 ## 💣 Handling errors
