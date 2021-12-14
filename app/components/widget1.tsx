@@ -1,12 +1,18 @@
 //@ts-nocheck
 import { json, LoaderFunction } from 'remix'
 import { useComponentData, useComponentCatch } from './ComponentData'
+import { getSession } from '~/sessions'
 
 type LoaderData = {
   message: string
 }
-export let loader: LoaderFunction = async () => {
-  return json({ message: 'Hello from Widget 1' })
+export let loader: LoaderFunction = async ({ request }) => {
+  const session = await getSession(request.headers.get('Cookie'))
+  const likeCount = Object.keys(session.data).filter(key =>
+    key.startsWith('liked-'),
+  ).length
+
+  return json({ message: 'Hello from Widget 1', likeCount })
 }
 
 function Widget1() {
@@ -15,6 +21,7 @@ function Widget1() {
     <div className="widget">
       <h1>Widget</h1>
       <p>{data.message}</p>
+      <p> Total Like Counts: {data.likeCount}</p>
     </div>
   )
 }
