@@ -57,10 +57,10 @@ export default function Index() {
   return (
     <div className="widgetContainer">
       {/* Wrap widget in <ComopnentData> and pass in widget loader data */}
-      <ComponentData data={componentData.widget1}>
+      <ComponentData loaderData={componentData.widget1}>
         <Widget1 />
       </ComponentData>
-      <ComponentData data={componentData.widget2}>
+      <ComponentData loaderData={componentData.widget2}>
         <Widget2 />
       </ComponentData>
     </div>
@@ -72,7 +72,7 @@ export default function Index() {
 
 You can access the loader data for the component using the `useComponentData` hook.
 This does not provide access to the route's loader data. You can pass that in
-manually using props.
+manually using props or with the `useMatches` hook.
 
 ```ts
 // widget1.tsx
@@ -85,7 +85,7 @@ function Widget1() {
 
 You can now export actions from your components. As with loaders, the enclosing
 route is still responsible for dispatching the action to the component. Once
-and action has been successfully handled, Remix will call the route's loaders
+an action has been successfully handled, Remix will call the route's loaders
 as it usually does.
 
 ```ts
